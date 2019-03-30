@@ -16,3 +16,52 @@ In their paper "[Differential Oscillatory Electroencephalogram Between Attention
 * _Reduced_ suppression of Beta frequencies between 800ms and 1300ms after cue presented. During this period, a participant is sending motor commands to tap the correct side of the screen.
 
 The Flank app implements the experiment protocol as closely as possible on an Android device using a Muse consumer EEG headset. Users can periodically test themselves using the phone-based Flanker tast, and get historic trends of their alpha- and beta-suppression, as well as overall reaction time and accuracy.
+
+## Usage 
+
+First, the app must be installed on an Android device - either by loading the provided .apk, or by building the 'app' project with Android Studio and running that on their phone. A Muse EEG headset is also required (2016 version preferred, but 2014 works too).
+
+The first screen presents the user two options: Either connect to a device and perform a Flanker task trial, or view past results.
+
+_Initial screen of the Application - either start a run, or view previous results._
+
+On the first run, no historic data is available, so it is recommended to run the Flanker task. Make sure bluetooth is enabled and the Muse device is turned on, and select "Begin testing"
+
+**1> START** 
+The app will attempt to connect with the EEG headset. Connection status is shown top right by four indicator lights corresponding to the four sensors on the headset. Once all four are bright green, proceed to start the trial. 
+
+Start Screen
+![Start Screen](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/startScreen.png)
+* Note that the Android device running the app should be held in landscape mode for this section, ideally with thumbs or fingers near both sides of screen to allow ease of response.
+
+**2> Flanker Test**
+The test consists of 38 trials, each trial begins with a cue, then followed by a stimulus. 
+
+The cues are a pair of left and right triangles colored in either yellow or blue. If one triangle is yellow, it indicates the stimulus that follows is _likely_ (but not guaranteed) to be pointing in that direction. 
+
+_Example of a cues indicating that the following stimulus **may** require a tap on the **left**_
+
+Triangle pairs can be both yellow or blue. Two blue triangles do not give directional hints. Two yellow triangles hints that the middle arrow in the stimulus is pointing to the opposite direction of the side arrows. When the cues are present, no actions are required.
+
+The stimulus is consisted of five characters of arrows or plus signs. The four characters on the side will always match each other, whereas the centre character may differ from the side characters.
+* Congruent Stimulus: side characters match the centre character
+    * ">>>>>"
+    * "<<<<<"
+* Incongruent Stimulus: side characters contradicts the centre character
+    * ">><>>"
+    * "<<><<"
+* Neutral Stimulus: side characters are plus signs
+    * "\++>\++"
+    * "\++<\++"
+* Catch Stimulus: all characters are plus signs
+    * "+++++"    
+
+When the stimulus is shown, the user must **tap on the side of the screen indicated by the middle character**. The direction of the side arrows are to be ignored. In the case of a **Catch Trial**, the user must tap on the direction indicated by the yellow cue previously shown. 
+
+_Example of a Congruent stimulus: the user should tap on the *right*, as the center character points **rightwards**._
+![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/tapRightFlankRight.jpg)
+
+_Example of a Incongruent stimulus: despite the side arrows points to the right the user should tap on the **left**, as the **centre arrow** points to the **left**._
+![Tap Left with Right Flankers](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/tapLeftFlankRight.jpg)
+
+_Example of a Catch stimulus: the cue previoiusly shown has a yellow triangle pointing to the left, the user should remember this direction and tap on left the side when a catch stimulus is shown._
