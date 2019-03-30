@@ -27,14 +27,14 @@ _Initial screen of the Application - either start a run, or view previous result
 
 On the first run, no historic data is available, so it is recommended to run the Flanker task. Make sure bluetooth is enabled and the Muse device is turned on, and select "Begin testing"
 
-**1> START** 
+**1) START** 
 The app will attempt to connect with the EEG headset. Connection status is shown top right by four indicator lights corresponding to the four sensors on the headset. Once all four are bright green, proceed to start the trial. 
 
 Start Screen
 ![Start Screen](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/startScreen.png)
 * Note that the Android device running the app should be held in landscape mode for this section, ideally with thumbs or fingers near both sides of screen to allow ease of response.
 
-**2> Flanker Test**
+**2) Flanker Test**
 The test consists of 38 trials, each trial begins with a cue, then followed by a stimulus. 
 
 The cues are a pair of left and right triangles colored in either yellow or blue. If one triangle is yellow, it indicates the stimulus that follows is _likely_ (but not guaranteed) to be pointing in that direction. 
@@ -65,3 +65,30 @@ _Example of a Incongruent stimulus: despite the side arrows points to the right 
 ![Tap Left with Right Flankers](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/tapLeftFlankRight.jpg)
 
 _Example of a Catch stimulus: the cue previoiusly shown has a yellow triangle pointing to the left, the user should remember this direction and tap on left the side when a catch stimulus is shown._
+| Cue          |  Catch Stimulus |
+| :-------------------------: | :-------------------------: |
+| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus] |
+
+**3> Relax Period**
+After every stimulus is shown the border of the screen will turn green. During this period the user can relax their eyes. Once the border turns white, the next trial begin shortly. 
+
+| Relax Stage | Trial Stage |
+| :-------------------------: | :-------------------------: |
+|![Relax Stage](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/relaxStage.png)  |  ![Trial Stage](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/trialStage.png)|
+
+
+
+Throughout the experiment, raw alpha and beta frequency strengths are collected. Upon completion of the 38 cue/stimulus trials, this data is processed, and ERPs are shown for the two periods described in the background section. Average alpha- and beta-suppression is calculated and displayed, along with average reaction time and accuracy at tapping the correct side of screen (or not tapping when required).
+
+_Results after a trial, showing tap accuracy, timing, and suppression epochs with average decrease._
+
+
+Finally, once data is recorded through successful completion of the task, it can be viewed from the main screen. Selecting the "View past results" option will display historic results, which can be selected to view in finer detail.
+
+_List of historic results, tapping one will show the result screen as above._
+
+### About Us
+
+Flank was created by the [(Medical Innovation in NeuroTechnology](https://ubcmint.github.io/) (MiNT) team of undergraduate students, part of the group of [Biomedical Engineering Student Teams](http://www.ubcbest.com/) at the University of British Columbia in Vancouver, Canada.
+
+Flank was submitted as a project for the Open category of the [NeuroTechX 2019 Student Club competition](https://neurotechx.github.io/studentclubs/competition/).
