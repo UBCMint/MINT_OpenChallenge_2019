@@ -59,7 +59,8 @@ The stimulus is consisted of five characters of arrows or plus signs. The four c
 When the stimulus is shown, the user must **tap on the side of the screen indicated by the middle character**. The direction of the side arrows are to be ignored. In the case of a **Catch Trial**, the user must tap on the direction indicated by the yellow cue previously shown. 
 
 _Example of a Congruent stimulus: the user should tap where the center character points._
-| ![Tap Right with Right Flankers] (https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/blob/devmich2/images/CongruentRight.png)  | ![Tap Left with Left Flankers] (https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/blob/devmich2/images/CongruentLeft.png)  |
+| ![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/blob/devmich2/images/CongruentRight.png)
+| ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/blob/devmich2/images/CongruentLeft.png)  |
 
 _Example of a Incongruent stimulus: despite the side arrows points to the right the user should tap on the **left**, as the **centre arrow** points to the **left**._
 ![Tap Left with Right Flankers]
