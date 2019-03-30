@@ -60,7 +60,7 @@ When the stimulus is shown, the user must **tap on the side of the screen indica
 
 _Example of a Congruent stimulus: the user should tap where the center character points._
 | Congruent Right          |  Congruent Left |
-| :-------------------------: | :-------------------------: |
+| ------------------------- | ------------------------- |
 | ![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight.png)
 | ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentLeft.png)  |
 
