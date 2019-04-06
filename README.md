@@ -62,8 +62,7 @@ _Example of a Congruent stimulus: the user should tap where the center character
 
 | Congruent Right          |  Congruent Left |
 | ------------------------- | ------------------------- |
-| ![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight_50.png)
-| ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentLeft_50.png)  |
+|![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight_50.png)  |   ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentLeft_50.png)|
 
 _Example of a Incongruent stimulus: despite the side arrows points to the right the user should tap on the **left**, as the **centre arrow** points to the **left**._
 ![Tap Left with Right Flankers]
