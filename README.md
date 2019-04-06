@@ -62,13 +62,14 @@ _Example of a Congruent stimulus: the user should tap where the center character
 
 | Congruent Right          |  Congruent Left |
 | ------------------------- | ------------------------- |
-| ![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight.png)
-| ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentLeft.png)  |
+| ![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight_50.png)
+| ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentLeft_50.png)  |
 
 _Example of a Incongruent stimulus: despite the side arrows points to the right the user should tap on the **left**, as the **centre arrow** points to the **left**._
 ![Tap Left with Right Flankers]
 
 _Example of a Catch stimulus: the cue previoiusly shown has a yellow triangle pointing to the left, the user should remember this direction and tap on left the side when a catch stimulus is shown._
+
 | Cue          |  Catch Stimulus |
 | :-------------------------: | :-------------------------: |
 | ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/Neutral.png) |
