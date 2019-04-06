@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ca.ubc.best.mint.museandroidapp.TaskCompleteActivity">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable name="activity" type="ca.ubc.best.mint.museandroidapp.TaskCompleteActivity" />
+        <variable name="results" type="ca.ubc.best.mint.museandroidapp.ParcelableResults" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/midline"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <TextView
+            android:id="@+id/connectionStrengthText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@{results.titleText()}"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/alphaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text='@{results.alphaEpochCaption()}'
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reactionTimeText"/>
+
+        <eeg.useit.today.eegtoolkit.view.EpochSurfaceView
+            android:id="@+id/alphaEpochs"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:epochs="@{results.alphaEpochs}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alphaLabel"
+            app:lineColor="red"
+            app:maxValue="0.4"
+            app:minValue="-0.4"
+            app:showAverage="true"
+            />
+
+        <TextView
+            android:id="@+id/betaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text='@{results.betaEpochCaption()}'
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alphaEpochs"/>
+
+        <eeg.useit.today.eegtoolkit.view.EpochSurfaceView
+            android:id="@+id/betaEpochs"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:epochs="@{results.betaEpochs}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/betaLabel"
+            app:lineColor="red"
+            app:maxValue="0.4"
+            app:minValue="-0.4"
+            app:showAverage="true"
+            />
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:onClick="@{() -> activity.handleHomeClicked()}"
+            android:text="DONE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Average reaction time:"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/midline"
+            app:layout_constraintTop_toBottomOf="@+id/connectionStrengthText"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Tap Accuracy"
+            android:textStyle="italic"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintLeft_toLeftOf="@+id/midline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connectionStrengthText"/>
+
+        <TextView
+            android:id="@+id/reactionTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{results.reactionTimeCaption()}"
+            android:textSize="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/midline"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.504"/>
+
+        <TextView
+            android:id="@+id/accuracyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{results.accuracyCaption()}"
+            android:textSize="30dp"
+            app:layout_constraintLeft_toLeftOf="@+id/midline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
