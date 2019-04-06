@@ -1,0 +1,300 @@
+%Setting up Cell Matrix of Collected Alpha data and calculates the
+%derivative of the function of certain Alpha locations with respect to
+%time. 
+
+for n = 1:30
+M = cell2mat(C(n,1));
+Mtime  = M(:,1);
+Mtime = nonzeros(Mtime);
+[i,j] = size(Mtime);
+
+M_Alpha1 = M(1:i,10);
+
+%M_Alpha2 = M(1:i,11);
+%M_Alpha3 = M(1:i,12);
+
+M_Alpha4 = M(1:i,13);
+
+a1=plot(Mtime,M_Alpha1,'-');L1 = "Curve1";
+hold on;
+
+%a2=plot (Mtime, M_Alpha2);L2 = "Curve2";
+%hold on;
+%a3=plot (Mtime, M_Alpha3);L3 = "Curve3";
+%hold on;
+
+a4=plot (Mtime, M_Alpha4,'-');L4 = "Curve4";
+hold on
+
+A1Combined = [M_Alpha1, Mtime];
+%A1Combined(1:length(Mtime),1) = (Mtime);
+%A1Combined(1:length(M_Alpha1),2) = (M_Alpha1);
+
+%A2Combined = [M_Alpha2,Mtime];
+%A2Combined(1:length(Mtime),1) = (Mtime);
+%A2Combined(1:length(M_Alpha2),2) = (M_Alpha2);
+
+%A3Combined = [M_Alpha3,Mtime];
+%A3Combined(1:length(Mtime),1) = (Mtime);
+%A3Combined(1:length(M_Alpha3),2) = (M_Alpha3);
+
+A4Combined = [M_Alpha4,Mtime];
+%A4Combined(1:length(Mtime),1) = (Mtime);
+%A4Combined(1:length(M_Alpha4),2) = (M_Alpha4);
+
+derivativeAlpha1 = numDiff(A1Combined);
+D1 = plot(Mtime, derivativeAlpha1(:,1),':');LD1 = "Curve5"
+hold on;
+
+%derivativeAlpha2 = numDiff(A2Combined);
+%D2 = plot(Mtime, derivativeAlpha2,':');LD2 = "Curve6";
+%hold on;
+
+%derivativeAlpha3 = numDiff(A3Combined);
+%D3 = plot(Mtime, derivativeAlpha3,':');LD3 = "Curve7";
+%hold on;
+
+derivativeAlpha4= numDiff(A4Combined);
+D4 = plot(Mtime,derivativeAlpha4(:,1),':');LD4 = "Curve8"
+hold on;
+end
+
+derivativeA1 = derivativeAlpha1;
+%derivativeA2 = derivativeAlpha2;
+%derivativeA3 = derivativeAlpha3;
+derivativeA4 = derivativeAlpha4;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Finds the minima of the derivative graphs and sees if they meet a certain
+%threshold. Implements function used to determine whether there is a dip or
+%not.
+
+%X = 1:length(derivativeAlpha1);
+%Y = 1:length(derivativeAlpha2);
+%Z = 1:length(derivativeAlpha3);
+%W = 1:length(derivativeAlpha4);
+
+%A1Minima = islocalmin(derivativeAlpha1);
+
+%A2Minima = islocalmin(derivativeAlpha2);
+%A3Minima = islocalmin(derivativeAlpha3);
+
+%A4Minima = islocalmin(derivativeAlpha4);
+
+%plot(X,derivativeAlpha1,X(A1Minima),derivativeAlpha1(A1Minima),'r*')
+%plot(Y,derivativeAlpha2,Y(A2Minima),derivativeAlpha2(A2Minima),'r*')
+%plot(Z,derivativeAlpha3,Z(A3Minima),derivativeAlpha3(A3Minima),'r*')
+%plot(W,derivativeAlpha4,W(A4Minima),derivativeAlpha4(A4Minima),'r*')
+
+%After Minima have been determined, use the isthereadip function to return a
+%value of one if there is a dip at a minima location and 0 if there isn't.
+%Side note that the program should also find a way to detect how many
+%minima there are and then creates an array with said amount of dips. This
+%array should also have a column for values of time at the dip. 
+
+lenA1 = length(derivativeA1);
+lenA4 = length(derivativeA4);
+
+%setting value of derivative threshold to be considered an alpha suppression 
+threshold = 0;
+
+%setting the second column of DipsTimeArray to be equal to the time column of the input 
+%DipsTimeArrayA1(:,2) = 0;
+DipsTimeArrayA4(:,2) = derivativeA4(:,2);
+DipsTimeArrayA1(:,2) = derivativeA1(:,2);
+%DipsTimeArrayA1(:,2) = 0;
+
+for n = 1:lenA1
+    if (derivativeA1(n,1)<threshold)
+        DipsTimeArrayA1(n,1) = 1;    
+    else
+        DipsTimeArrayA1(n,1) = 0;
+    end
+end
+
+for n = 1:lenA4
+    if (derivativeA4(n,1)<threshold)
+        DipsTimeArrayA4(n,1) = 1;
+    else
+        DipsTimeArrayA4(n,1) = 0;
+    end
+end
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Now that we have a array of all positive dips, we can cross reference the
+%times at which the dips occur and can use loops to find the baseline and
+%times immediately after and before the dip. DipsTimeArray is the array
+%containing all 0/1 values and time values for dips.
+TimeOfDipsA1 = zeros(length(Mtime),1);
+TimeOfDipsA4 = zeros(length(Mtime),1);
+DipsCounterA1 = 0;
+DipsCounterA4 = 0;
+%This stores all time values of dips in an array
+for m = 1:length(Mtime)
+    if(DipsTimeArrayA1(m,1)==0)
+    else
+       DipsCounterA1 = DipsCounterA1 +1;
+       TimeOfDipsA1(DipsCounterA1,1) = M(m,1);
+    end
+end
+
+for m = 1:length(Mtime)
+    if(DipsTimeArrayA4(m,1)==0)
+    else
+       DipsCounterA4 = DipsCounterA4 +1;
+       TimeOfDipsA4(DipsCounterA4,1) = Mtime(m,1);
+    end
+end
+DipsBeforeAfterA1 = zeros(length(Mtime),2);
+DipsBeforeAfterA4 = zeros(length(Mtime),2);
+
+%This stores times slightly before and after the dip in a separate array.
+%DipsBeforeAfter is the array that stores the times right before and after
+%the dip.Should Create one for each separate derivative graph
+for j = 1:DipsCounterA1
+    for k = 1:length(Mtime)%Arbitrary length, can be adjusted later
+        if(derivativeA1(k,2)) ~= TimeOfDipsA1(j,1)
+           DipsBeforeAfterA1(j,1:2) = 0;
+        elseif(derivativeA1(k,2)) == TimeOfDipsA1(j,1)
+            %For loop here a part of the DipsBeforeAfter to determine the
+            %amount of time spent at Derivative ==0. If it has not moved
+            %for a while, it can be determined that it is the baseline. It
+            %must incorporate a variable that can be used to go back in
+            %milliseconds
+            DipsBeforeAfterA1(j,1) = TimeOfDipsA1(j,1)-k;
+            %Possible to simply do -1/+1 since Mtime is in milliseconds
+            %not seconds
+            DipsBeforeAfterA1(j,2) = TimeOfDipsA1(j,1)+k;
+        end
+    end  
+end
+
+%for j = 1:DipsCounterA4
+   % for k = 1:length(Mtime)%Arbitrary length, can be adjusted later
+       % if(derivativeA4(k,2)) ~= TimeOfDipsA4(j,1)
+        %    DipsBeforeAfterA4(j,1:2) = 0;
+       % elseif(derivativeA4(k,2)) == TimeOfDipsA4(j,1)
+            %For loop here a part of the DipsBeforeAfter to determine the
+            %amount of time spent at Derivative ==0. If it has not moved
+            %for a while, it can be determined that it is the baseline. It
+            %must incorporate a variable that can be used to go back in
+            %milliseconds
+        %    DipsBeforeAfterA4(j,1) = TimeOfDipsA4(j,1)-k;
+            %Possible to simply do -1 % +1 since Mtime is in milliseconds
+            %not seconds
+          %  DipsBeforeAfterA4(j,2) = TimeOfDipsA4(j,1)+k;
+       % end
+   % end  
+%end
+
+
+%create matrix to store time differences
+LengthA1 = length(DipsBeforeAfterA1);
+TimeDifferenceA1 = linspace(0,0,LengthA1);
+%for loop for entire matrix
+%check that values in both columns aren't the same
+%if not, compute time difference and store at that spot in time difference
+   % for i = 1:LengthA1
+        %if the values are the same TimeDifference shows 0
+      %  if(DipsBeforeAfterA1(i,1) == 0 && DipsBeforeAfterA1(i,2) == 0)
+         %   TimeDifferenceA1(i) = 0;
+        %else compute absolute difference between columns    
+      %  else
+       %    TimeDifferenceA1(i) = abs(DipsBeforeAfterA1(i,1) - DipsBeforeAfterA1(i,2));
+       % end
+   % end
+    %create matrix to store time differences
+
+LengthA4 = length(DipsBeforeAfterA4);
+TimeDifferenceA4 = linspace(0,0,LengthA4);
+%for loop for entire matrix
+%check that values in both columns aren't the same
+%if not, compute time difference and store at that spot in time difference
+  %  for i = 1:LengthA4
+        %if the values are the same TimeDifference shows 0
+      %  if(DipsBeforeAfterA4(i,1) == 0 && DipsBeforeAfterA4(i,2) == 0)
+      %      TimeDifferenceA4(i) = 0;
+        %else compute absolute difference between columns    
+      %  else
+      %      TimeDifferenceA4(i) = abs(DipsBeforeAfterA4(i,1) - DipsBeforeAfterA4(i,2));
+      %  end
+   % end
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Hereis the final portion of the code needed to translate the Alpha Dips.
+%There will be a separate function called DipDepth. The goal of this
+%separate function will be to find the absolute value of the depth of the
+%dip relative to the calculated baseline.
+%for k = 1:length(TimeOfDips)
+%TimeSpentinDip(k,1) = DipsBeforeAfter(k,2)-TimeOfDips(k,1);
+%TimeSpentinDip(k,1) = TimeSpentinDip(k,1) *.7
+%end 
+A1ConformationMatrix = zeros(length(DipsTimeArrayA1),6);
+A4ConformationMatrix = zeros(length(DipsTimeArrayA4),6);
+
+%%% DipDepth Function Here %%%
+for j = 1:length(DipsTimeArrayA1)
+   if DipsTimeArrayA1(j,1)==1
+   A1ConformationMatrix(j,1) = DipsTimeArrayA1(j,2);
+   A1ConformationMatrix(j,2) = M(j,10);
+   end
+end
+
+for k = 1:length(DipsBeforeAfterA1)
+    A1ConformationMatrix(k,3) = DipsBeforeAfterA1(k,1);
+    A1ConformationMatrix(k,4) = DipsBeforeAfterA1(k,2);
+    
+    if A1ConformationMatrix(k,3) == M(k,1)
+        A1ConformationMatrix(k,5) = M(k,10);
+    elseif A1ConformationMatrix(k,4) == M(k,1)
+        A1ConformationMatrix(k,6) = M(k,10);
+    end
+    DipDepthArrayA1(k,1) = A1ConformationMatrix(k,2);
+    DipDepthArrayA1(k,2) = A1ConformationMatrix(k,5);
+    DipDepthArrayA1(k,3) = A1ConformationMatrix(k,6);
+end
+
+for k = 1:length(DipDepthArrayA1)
+AverageDepthA1(k,1) = (DipDepthArrayA1(k,1)-DipDepthArrayA1(k,2));
+AverageDepthA1(k,2) = (DipDepthArrayA1(k,1)-DipDepthArrayA1(k,3));
+end
+
+AverageVoltageMatA1 = sum(abs(AverageDepthA1));
+AverageDepthTempA1(1,1) = AverageVoltageMatA1(1,1)/length(AverageDepthA1);
+AverageDepthTempA1(1,2) = AverageVoltageMatA1(1,2)/length(AverageDepthA1);
+
+for j = 1:length(DipsTimeArrayA4)
+   if DipsTimeArrayA4(j,1)==1
+   A4ConformationMatrix(j,1) = DipsTimeArrayA4(j,2);
+   A4ConformationMatrix(j,2) = M(j,13);
+   end
+end
+
+for k = 1:length(DipsBeforeAfterA4)
+    A4ConformationMatrix(k,3) = DipsBeforeAfterA4(k,1);
+    A4ConformationMatrix(k,4) = DipsBeforeAfterA4(k,2);
+    
+    if A4ConformationMatrix(k,3) == M(k,1)
+        A4ConformationMatrix(k,5) = M(k,13);
+    elseif A4ConformationMatrix(k,4) == M(k,1)
+        A4ConformationMatrix(k,6) = M(k,13);
+    end
+    DipDepthArrayA4(k,1) = A4ConformationMatrix(k,2);
+    DipDepthArrayA4(k,2) = A4ConformationMatrix(k,5);
+    DipDepthArrayA4(k,3) = A4ConformationMatrix(k,6);
+end
+
+for k = 1:length(DipDepthArrayA4)
+AverageDepthA4(k,1) = (DipDepthArrayA4(k,1)-DipDepthArrayA4(k,2));
+AverageDepthA4(k,2) = (DipDepthArrayA4(k,1)-DipDepthArrayA4(k,3));
+end
+
+AverageVoltageMatA4 = sum(abs(AverageDepthA4));
+AverageDepthTempA4(1,1) = AverageVoltageMatA4(1,1)/length(AverageDepthA4);
+AverageDepthTempA4(1,2) = AverageVoltageMatA4(1,2)/length(AverageDepthA4);
+
