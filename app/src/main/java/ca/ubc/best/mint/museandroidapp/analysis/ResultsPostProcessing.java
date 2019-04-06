@@ -7,9 +7,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.*;
 
 import ca.ubc.best.mint.museandroidapp.ParcelableResults;
 import ca.ubc.best.mint.museandroidapp.vm.FlankerLiveRecorder;
+import eeg.useit.today.eegtoolkit.Constants;
 import eeg.useit.today.eegtoolkit.model.TimeSeriesSnapshot;
 
 import static ca.ubc.best.mint.museandroidapp.Util.msToSamples;
@@ -42,6 +44,7 @@ public class ResultsPostProcessing {
     List<Map<String, TimeSeriesSnapshot<Double>>> alpha = processAllAlpha(recorder.getAlphaEpochs());
     List<Map<String, TimeSeriesSnapshot<Double>>> beta = processAllBeta(recorder.getBetaEpochs());
     Date timeOfExperiment = new Date();
+
     return new ParcelableResults(
         alpha, beta,
         calcAlphaSuppression(alpha),
@@ -68,7 +71,7 @@ public class ResultsPostProcessing {
 
   // Process all beta epochs by processing each individial snapshot separately.
   public static List<Map<String, TimeSeriesSnapshot<Double>>> processAllBeta(
-      List<Map<String, TimeSeriesSnapshot<Double>>> betas) {
+          List<Map<String, TimeSeriesSnapshot<Double>>> betas) {
     List<Map<String, TimeSeriesSnapshot<Double>>> results = new ArrayList<>();
     for (Map<String, TimeSeriesSnapshot<Double>> beta : betas) {
       Map<String, TimeSeriesSnapshot<Double>> snapshots = new HashMap<>();
@@ -77,6 +80,7 @@ public class ResultsPostProcessing {
       }
       results.add(snapshots);
     }
+
     return results;
   }
 
@@ -140,10 +144,10 @@ public class ResultsPostProcessing {
   /** @return The mean of all values[start..end). */
   private static double averageInRange(Double[] values, int start, int end) {
     double sum = 0;
-    for (int i = start; i < end; i++) {
+    for(int i = 0; i < values.length; i++) {
       sum += values[i];
     }
-    return sum / (end - start);
+    return sum / (values.length);
   }
 }
 
