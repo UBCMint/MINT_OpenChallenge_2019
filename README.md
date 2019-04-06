@@ -71,7 +71,7 @@ _Example of a Catch stimulus: the cue previoiusly shown has a yellow triangle po
 
 | Cue          |  Catch Stimulus |
 | :-------------------------: | :-------------------------: |
-| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/Neutral.png) |
+| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/Neutral_50.png) |
 
 **3> Relax Period**
 After every stimulus is shown the border of the screen will turn green. During this period the user can relax their eyes. Once the border turns white, the next trial begin shortly. 
