@@ -1,4 +1,4 @@
-# MINT OpenChallenge 2019 - Flank
+# Flank
 
 ![Logo](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/flank.png)
 
@@ -24,22 +24,24 @@ First, the app must be installed on an Android device - either by loading the pr
 The first screen presents the user two options: Either connect to a device and perform a Flanker task trial, or view past results.
 
 _Initial screen of the Application - either start a run, or view previous results._
+![Initial Screen](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/initial.jpg)
 
 On the first run, no historic data is available, so it is recommended to run the Flanker task. Make sure bluetooth is enabled and the Muse device is turned on, and select "Begin testing"
 
-**1) START** 
+**1> START** 
 The app will attempt to connect with the EEG headset. Connection status is shown top right by four indicator lights corresponding to the four sensors on the headset. Once all four are bright green, proceed to start the trial. 
 
 Start Screen
 ![Start Screen](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/startScreen.png)
 * Note that the Android device running the app should be held in landscape mode for this section, ideally with thumbs or fingers near both sides of screen to allow ease of response.
 
-**2) Flanker Test**
+**2> Flanker Test**
 The test consists of 38 trials, each trial begins with a cue, then followed by a stimulus. 
 
 The cues are a pair of left and right triangles colored in either yellow or blue. If one triangle is yellow, it indicates the stimulus that follows is _likely_ (but not guaranteed) to be pointing in that direction. 
 
 _Example of a cues indicating that the following stimulus **may** require a tap on the **left**_
+![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)
 
 Triangle pairs can be both yellow or blue. Two blue triangles do not give directional hints. Two yellow triangles hints that the middle arrow in the stimulus is pointing to the opposite direction of the side arrows. When the cues are present, no actions are required.
 
@@ -58,20 +60,17 @@ The stimulus is consisted of five characters of arrows or plus signs. The four c
 
 When the stimulus is shown, the user must **tap on the side of the screen indicated by the middle character**. The direction of the side arrows are to be ignored. In the case of a **Catch Trial**, the user must tap on the direction indicated by the yellow cue previously shown. 
 
-_Example of a Congruent stimulus: the user should tap where the center character points._
-
-| Congruent Right          |  Congruent Left |
-| ------------------------- | ------------------------- |
-|![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight_50.png)  |   ![Tap Left with Left Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentLeft_50.png)|
+_Example of a Congruent stimulus: the user should tap on the *right*, as the center character points **rightwards**._
+![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/tapRightFlankRight.jpg)
 
 _Example of a Incongruent stimulus: despite the side arrows points to the right the user should tap on the **left**, as the **centre arrow** points to the **left**._
-![Tap Left with Right Flankers]
+![Tap Left with Right Flankers](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/tapLeftFlankRight.jpg)
 
 _Example of a Catch stimulus: the cue previoiusly shown has a yellow triangle pointing to the left, the user should remember this direction and tap on left the side when a catch stimulus is shown._
 
 | Cue          |  Catch Stimulus |
 | :-------------------------: | :-------------------------: |
-| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/Neutral_50.png) |
+| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/catchTrial.png) |
 
 **3> Relax Period**
 After every stimulus is shown the border of the screen will turn green. During this period the user can relax their eyes. Once the border turns white, the next trial begin shortly. 
@@ -85,14 +84,15 @@ After every stimulus is shown the border of the screen will turn green. During t
 Throughout the experiment, raw alpha and beta frequency strengths are collected. Upon completion of the 38 cue/stimulus trials, this data is processed, and ERPs are shown for the two periods described in the background section. Average alpha- and beta-suppression is calculated and displayed, along with average reaction time and accuracy at tapping the correct side of screen (or not tapping when required).
 
 _Results after a trial, showing tap accuracy, timing, and suppression epochs with average decrease._
-
+![Trial Results](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/oneResult.jpg)
 
 Finally, once data is recorded through successful completion of the task, it can be viewed from the main screen. Selecting the "View past results" option will display historic results, which can be selected to view in finer detail.
 
 _List of historic results, tapping one will show the result screen as above._
+![Historic Results](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/allResults.jpg)
 
 ### About Us
 
 Flank was created by the [(Medical Innovation in NeuroTechnology](https://ubcmint.github.io/) (MiNT) team of undergraduate students, part of the group of [Biomedical Engineering Student Teams](http://www.ubcbest.com/) at the University of British Columbia in Vancouver, Canada.
 
-Flank was submitted as a project for the Open category of the [NeuroTechX 2019 Student Club competition](https://neurotechx.github.io/studentclubs/competition/).
+Flank was submitted as a project for the Open category of the [NeuroTechX 2018 Student Club competition](https://neurotechx.github.io/studentclubs/competition/).
