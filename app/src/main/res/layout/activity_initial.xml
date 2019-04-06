@@ -59,6 +59,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
+            android:onClick="viewHistoryClicked"
             android:text='View past results'
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintLeft_toLeftOf="parent"
