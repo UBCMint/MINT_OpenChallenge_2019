@@ -66,7 +66,7 @@ public class TaskCompleteActivity extends AppCompatActivity {
           System.arraycopy(test.getValue().values, 0, outputData, 0, test.getValue().values.length);
           System.arraycopy(test.getValue().timestamps, 0, timeStamps, 0, test.getValue().timestamps.length);
           for (int j = 0; j < outputData.length; j++) {
-            writer.append(Long.toString((timeStamps[j] - firstTime)/(long)(Math.pow(10, 3))) + "      "
+            writer.append(Long.toString((timeStamps[j] - firstTime) / (long) (Math.pow(10, 3))) + "      "
                     + Double.toString(outputData[j]) + "\n");
           }
         }
