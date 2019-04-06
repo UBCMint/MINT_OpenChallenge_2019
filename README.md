@@ -59,6 +59,7 @@ The stimulus is consisted of five characters of arrows or plus signs. The four c
 When the stimulus is shown, the user must **tap on the side of the screen indicated by the middle character**. The direction of the side arrows are to be ignored. In the case of a **Catch Trial**, the user must tap on the direction indicated by the yellow cue previously shown. 
 
 _Example of a Congruent stimulus: the user should tap where the center character points._
+
 | Congruent Right          |  Congruent Left |
 | ------------------------- | ------------------------- |
 | ![Tap Right with Right Flankers](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/CongruentRight.png)
@@ -70,7 +71,7 @@ _Example of a Incongruent stimulus: despite the side arrows points to the right 
 _Example of a Catch stimulus: the cue previoiusly shown has a yellow triangle pointing to the left, the user should remember this direction and tap on left the side when a catch stimulus is shown._
 | Cue          |  Catch Stimulus |
 | :-------------------------: | :-------------------------: |
-| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus] |
+| ![Cue Left](https://raw.githubusercontent.com/UBCMint/MuseAndroidApp/master/images/cueLeft.jpg)  |  ![Catch Stimulus](https://raw.githubusercontent.com/UBCMint/MINT_OpenChallenge_2019/devmich2/images/Neutral.png) |
 
 **3> Relax Period**
 After every stimulus is shown the border of the screen will turn green. During this period the user can relax their eyes. Once the border turns white, the next trial begin shortly. 
