@@ -75,7 +75,7 @@ public class InitialActivity extends AppCompatActivity {
   }
 
   /** Handles skip button clicked, debug shortcut to go to results screen with fake data. */
-  public void viewHistoryClicked() {
+  public void viewHistoryClicked(View v) {
     Intent intent = new Intent(InitialActivity.this, ResultListActivity.class);
     startActivity(intent);
   }
