@@ -88,6 +88,8 @@ public class ResultsPostProcessing {
   /** @return Alpha suppression, calculated as the average drop in the desired time frame. */
   private static double calcAlphaSuppression(List<Map<String, TimeSeriesSnapshot<Double>>> alphas) {
     Double[] alphaSurpression = parseAlpha(alphas);
+    Log.i("MINT", "Alpha Supression Before, " + alphaSurpression[0] * 1000000000.0 + " Alpha Surpression After," +
+            alphaSurpression[1] * 1000000000.0);
     return alphaSurpression[0];
   }
 
@@ -136,10 +138,23 @@ public class ResultsPostProcessing {
     }
 
     for (Map.Entry<Integer, Double> test : alphaDips.entrySet()) {
-      alphaData[test.getKey() - 1] = beforeAlpha[counter];
-      alphaData[test.getKey() + 1] = afterAlpha[counter];
-      filteredDips[counter] = test.getValue();
-      counter++;
+      if(test.getKey() == 0) {
+        beforeAlpha[counter] = 0.0;
+        afterAlpha[counter] = alphaData[test.getKey() + 1];
+        filteredDips[counter] = alphaData[test.getKey()];
+        counter++;
+      }
+      else if(test.getKey() == derivativeAlpha.length - 1) {
+        beforeAlpha[counter] = alphaData[test.getKey() - 1];
+        afterAlpha[counter] = 0.0;
+        filteredDips[counter] = alphaData[test.getKey()];
+      }
+      else {
+        beforeAlpha[counter] = alphaData[test.getKey() - 1];
+        afterAlpha[counter] = alphaData[test.getKey() + 1];
+        filteredDips[counter] = alphaData[test.getKey()];
+        counter++;
+      }
     }
 
     for(int j = 0; j < counter; j++) {
@@ -165,18 +180,19 @@ public class ResultsPostProcessing {
 
 
     //define first and last derivative values using one sided difference
-    derivativeArray[0] = (alphaData[1]-alphaData[0])/(timeArray[1]-timeArray[0]);
-    derivativeArray[dataLength -1] = (alphaData[dataLength-1]-alphaData[dataLength-2])/(timeArray[dataLength-1]-timeArray[dataLength-2]);
+    derivativeArray[0] = ((alphaData[1]-alphaData[0])/(timeArray[1]-timeArray[0])) * Math.pow(10, 6)/3;
+    derivativeArray[dataLength -1] = ((alphaData[dataLength-1]-alphaData[dataLength-2])/
+            (timeArray[dataLength-1]-timeArray[dataLength-2])) * Math.pow(10, 6)/3;
 
     for(int i = 1; i < dataLength - 1; i++){
       if((timeArray[i+1]-timeArray[i])==0 || (timeArray[i] - timeArray[i-1]) == 0){
         // protection from case where time values are repeated
-        derivativeArray[i] = derivativeArray[i-1];
+        derivativeArray[i] = derivativeArray[i-1] * Math.pow(10, 6)/3;
       }
       else{
         // central difference considering uneven intervals
-        derivativeArray[i] = ( ( ( alphaData[i+1] - alphaData[i]) / (timeArray[i+1] - timeArray[i]) )
-                + ( (alphaData[i]-alphaData[i-1]) / (timeArray[i] - timeArray[i-1]) ) ) / 2;
+        derivativeArray[i] = ((((alphaData[i+1] - alphaData[i]) / (timeArray[i+1] - timeArray[i]))
+                + ((alphaData[i]-alphaData[i-1]) / (timeArray[i] - timeArray[i-1])))/2) * Math.pow(10, 6)/3;
       }
     }
     return derivativeArray;
